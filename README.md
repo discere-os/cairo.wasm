@@ -1,3 +1,13 @@
+# @discere-os/cairo.wasm
+
+WebAssembly port of Cairo - Multi-platform 2D graphics library with support for multiple output devices and consistent rendering.
+
+[![CI/CD](https://github.com/discere-os/discere-nucleus/actions/workflows/cairo-wasm-ci.yml/badge.svg)](https://github.com/discere-os/discere-nucleus/actions)
+[![JSR](https://jsr.io/badges/@discere-os/cairo.wasm)](https://jsr.io/@discere-os/cairo.wasm)
+[![npm version](https://badge.fury.io/js/@discere-os%2Fcairo.wasm.svg)](https://badge.fury.io/js/@discere-os%2Fcairo.wasm)
+[![License](https://img.shields.io/badge/License-LGPL--2.1%20OR%20MPL--1.1-blue.svg)](COPYING)
+[![Status](https://img.shields.io/badge/status-alpha-orange.svg)](https://github.com/discere-os/discere-nucleus)
+
 # Cairo: Multi-platform 2D graphics library
 
 <https://cairographics.org>
