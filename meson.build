@@ -804,6 +804,8 @@ if not get_option('tests').disabled() and feature_conf.get('CAIRO_HAS_PNG_FUNCTI
   subdir('perf')
 endif
 
+subdir('wasm')
+
 if get_option('gtk_doc')
   doc_srcdir = include_directories('src')
   subdir('doc/public')
