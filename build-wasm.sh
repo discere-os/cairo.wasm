@@ -17,10 +17,11 @@ ENABLE_NATIVE_BUILD="${ENABLE_NATIVE_BUILD:-OFF}"
 
 # Ecosystem dependencies paths
 ZLIB_ROOT="${ZLIB_ROOT:-../zlib.wasm}"
-LIBPNG_ROOT="${LIBPNG_ROOT:-../libpng.wasm}" 
+LIBPNG_ROOT="${LIBPNG_ROOT:-../libpng.wasm}"
 PIXMAN_ROOT="${PIXMAN_ROOT:-../pixman.wasm}"
 FREETYPE_ROOT="${FREETYPE_ROOT:-../freetype.wasm}"
 FONTCONFIG_ROOT="${FONTCONFIG_ROOT:-../fontconfig.wasm}"
+GLIB_ROOT="${GLIB_ROOT:-../glib.wasm}"
 
 echo "🎨 === Cairo.wasm Production Build System ==="
 echo "📊 Build Type: $BUILD_TYPE"
@@ -57,6 +58,7 @@ check_dependency "libpng.wasm" "$LIBPNG_ROOT"
 check_dependency "pixman.wasm" "$PIXMAN_ROOT"
 check_dependency "freetype.wasm" "$FREETYPE_ROOT"
 check_dependency "fontconfig.wasm" "$FONTCONFIG_ROOT"
+check_dependency "glib.wasm" "$GLIB_ROOT"
 
 # Create build directories
 BUILD_DIR="build"
@@ -85,7 +87,7 @@ MESON_ARGS=(
     -Dpng=disabled
     -Dfreetype=enabled
     -Dfontconfig=enabled
-    -Dglib=disabled
+    -Dglib=enabled
     -Dxlib=disabled
     -Dxcb=disabled
     -Dquartz=disabled
@@ -112,6 +114,10 @@ fi
 
 if [ -d "$FONTCONFIG_ROOT/install" ]; then
     export PKG_CONFIG_PATH="$FONTCONFIG_ROOT/install/lib/pkgconfig:$PKG_CONFIG_PATH"
+fi
+
+if [ -d "$GLIB_ROOT/install" ]; then
+    export PKG_CONFIG_PATH="$GLIB_ROOT/install/lib/pkgconfig:$PKG_CONFIG_PATH"
 fi
 
 # Clean previous build
@@ -179,6 +185,8 @@ emcc "${FOUNDATION_FLAGS[@]}" \
     "../fontconfig.wasm/install/lib/libfontconfig.a" \
     "../freetype.wasm/build-wasm/install/lib/libfreetype.a" \
     "../libexpat.wasm/install/lib/libexpat.a" \
+    "../glib.wasm/install/lib/libglib-2.0.a" \
+    "../glib.wasm/install/lib/libgobject-2.0.a" \
     -o "$DIST_DIR/cairo.js"
 
 if [ $? -ne 0 ]; then
@@ -221,6 +229,8 @@ if [ "$ENABLE_NATIVE_BUILD" = "ON" ]; then
         "../fontconfig.wasm/install/lib/libfontconfig.a" \
         "../freetype.wasm/build-wasm/install/lib/libfreetype.a" \
         "../libexpat.wasm/install/lib/libexpat.a" \
+        "../glib.wasm/install/lib/libglib-2.0.a" \
+        "../glib.wasm/install/lib/libgobject-2.0.a" \
         -o "$DIST_DIR/cairo-native.js"
         
     if [ $? -ne 0 ]; then
