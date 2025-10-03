@@ -28,6 +28,7 @@ cairo_side_link_args = [
   '-fPIC',
   '-O3',
   '-flto',
+  '-sERROR_ON_UNDEFINED_SYMBOLS=0',  # Host provides dependencies (pixman, freetype, fontconfig, glib, etc.)
   '-sEXPORTED_FUNCTIONS=["_cairo_wasm_version"]',
 ]
 
@@ -36,6 +37,7 @@ shared_module(
   files('cairo_wasm_side.c'),
   dependencies: [libcairo_dep],
   name_prefix: '',
+  name_suffix: 'wasm',
   c_args: cairo_wasm_cargs,
   link_args: cairo_side_link_args,
   install: true,
