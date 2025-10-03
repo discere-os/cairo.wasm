@@ -867,3 +867,11 @@ summary({
         'cairo-script-interpreter': conf.get('CAIRO_HAS_INTERPRETER', 0) == 1,
         'API reference': get_option('gtk_doc'),
         }, section: 'Features and Utilities', bool_yn: true)
+
+# Generate WASM manifest after build
+manifest_script = find_program('../../../../scripts/generate-manifest-meson.sh', required: false)
+if manifest_script.found()
+  run_target('manifest',
+    command: [manifest_script, meson.project_source_root(), meson.project_build_root()]
+  )
+endif
