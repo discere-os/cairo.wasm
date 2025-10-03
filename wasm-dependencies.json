@@ -1,0 +1,52 @@
+{
+  "wasm:pixman": {
+    "version": "^0.43.0",
+    "symbols": {
+      "required": [
+        "pixman_image_create_bits",
+        "pixman_image_composite",
+        "pixman_image_unref"
+      ]
+    },
+    "loading": "eager",
+    "fallback": null
+  },
+  "wasm:freetype": {
+    "version": "^2.13.0",
+    "symbols": {
+      "required": [
+        "FT_Init_FreeType",
+        "FT_New_Face",
+        "FT_Load_Glyph",
+        "FT_Done_Face"
+      ]
+    },
+    "loading": "lazy",
+    "fallback": null
+  },
+  "wasm:fontconfig": {
+    "version": "^2.15.0",
+    "symbols": {
+      "required": [
+        "FcInit",
+        "FcConfigGetCurrent",
+        "FcPatternCreate",
+        "FcPatternDestroy"
+      ]
+    },
+    "loading": "lazy",
+    "fallback": null
+  },
+  "wasm:glib": {
+    "version": "^2.78.0",
+    "symbols": {
+      "required": [
+        "g_malloc",
+        "g_free",
+        "g_strdup"
+      ]
+    },
+    "loading": "eager",
+    "fallback": null
+  }
+}
