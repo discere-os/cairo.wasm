@@ -665,6 +665,15 @@ if not get_option('tee').disabled()
   }]
 endif
 
+# WebGPU backend - enabled for WASM builds only
+if host_machine.system() == 'emscripten' or get_option('webgpu').enabled()
+  feature_conf.set('CAIRO_HAS_WEBGPU_SURFACE', 1)
+  built_features += [{
+    'name': 'cairo-webgpu',
+    'description': 'WebGPU hardware-accelerated surface backend',
+  }]
+endif
+
 incbase = include_directories('.')
 
 foreach check : check_sizeofs
@@ -828,6 +837,15 @@ foreach feature: built_features
   )
 endforeach
 
+# Install WebGPU shaders if enabled
+if feature_conf.get('CAIRO_HAS_WEBGPU_SURFACE', 0) == 1
+  install_data(
+    'shaders/fill-rect.wgsl',
+    'shaders/composite.wgsl',
+    install_dir: get_option('prefix') / 'share' / 'cairo' / 'shaders'
+  )
+endif
+
 # summary
 summary({
         'Image': true,
@@ -835,6 +853,7 @@ summary({
         'Observer': true,
         'Mime': true,
         'Tee': feature_conf.get('CAIRO_HAS_TEE_SURFACE', 0) == 1,
+        'WebGPU': feature_conf.get('CAIRO_HAS_WEBGPU_SURFACE', 0) == 1,
         'Xlib': feature_conf.get('CAIRO_HAS_XLIB_SURFACE', 0) == 1,
         'Xlib Xrender': feature_conf.get('CAIRO_HAS_XLIB_XRENDER_SURFACE', 0) == 1,
         'Quartz': feature_conf.get('CAIRO_HAS_QUARTZ_SURFACE', 0) == 1,

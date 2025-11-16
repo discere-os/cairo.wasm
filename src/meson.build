@@ -198,6 +198,9 @@ cairo_feature_sources = {
   'cairo-tee': [
     'cairo-tee-surface.c',
   ],
+  'cairo-webgpu': [
+    'cairo-webgpu-surface.c',
+  ],
 }
 
 cairo_feature_headers = {
@@ -216,6 +219,7 @@ cairo_feature_headers = {
   'cairo-script': ['cairo-script.h'],
   'cairo-tee': ['cairo-tee.h'],
   'cairo-vg': ['cairo-vg.h'],
+  'cairo-webgpu': ['cairo-webgpu.h'],
 }
 
 cairo_no_warn_c_args = cc.get_supported_arguments([
