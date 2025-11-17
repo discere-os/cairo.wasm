@@ -1,0 +1,70 @@
+{
+  "dependencies": [
+    {
+      "name": "pixman",
+      "version": "0.43.0",
+      "type": "side",
+      "url": "https://wasm.discere.cloud/pixman.wasm/v0.43.0/side/pixman-side.wasm",
+      "integrity": "sha384-...",
+      "symbols": {
+        "required": [
+          "pixman_image_create_bits",
+          "pixman_image_composite",
+          "pixman_image_unref"
+        ]
+      },
+      "loading": "eager",
+      "fallback": null
+    },
+    {
+      "name": "freetype",
+      "version": "2.13.0",
+      "type": "side",
+      "url": "https://wasm.discere.cloud/freetype.wasm/v2.13.0/side/freetype-side.wasm",
+      "integrity": "sha384-...",
+      "symbols": {
+        "required": [
+          "FT_Init_FreeType",
+          "FT_New_Face",
+          "FT_Load_Glyph",
+          "FT_Done_Face"
+        ]
+      },
+      "loading": "lazy",
+      "fallback": null
+    },
+    {
+      "name": "fontconfig",
+      "version": "2.15.0",
+      "type": "side",
+      "url": "https://wasm.discere.cloud/fontconfig.wasm/v2.15.0/side/fontconfig-side.wasm",
+      "integrity": "sha384-...",
+      "symbols": {
+        "required": [
+          "FcInit",
+          "FcConfigGetCurrent",
+          "FcPatternCreate",
+          "FcPatternDestroy"
+        ]
+      },
+      "loading": "lazy",
+      "fallback": null
+    },
+    {
+      "name": "glib",
+      "version": "2.78.0",
+      "type": "side",
+      "url": "https://wasm.discere.cloud/glib.wasm/v2.78.0/side/glib-side.wasm",
+      "integrity": "sha384-...",
+      "symbols": {
+        "required": [
+          "g_malloc",
+          "g_free",
+          "g_strdup"
+        ]
+      },
+      "loading": "eager",
+      "fallback": null
+    }
+  ]
+}
